@@ -9,7 +9,7 @@ namespace WebAPI.Controllers
     public class HomeController : ControllerBase
     {
         private readonly BookStoreContext db;
-        public static int PAGE_SIZE { get; set; } = 5;
+        public static int PAGE_SIZE { get; set; } = 4;
 
         public HomeController(BookStoreContext context)
         {

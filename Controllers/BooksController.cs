@@ -24,7 +24,6 @@ namespace WebAPI.Controllers
 
         // GET: api/Books
         [HttpGet]
-        [Authorize(Roles = AppRole.Customer)]
         public async Task<ActionResult<IEnumerable<Book>>> GetBooks()
         {
             return await _context.Books!.ToListAsync();
@@ -32,7 +31,6 @@ namespace WebAPI.Controllers
 
         // GET: api/Books/5
         [HttpGet("{id}")]
-        [Authorize(Roles = AppRole.Admin)]
         public async Task<ActionResult<Book>> GetBook(int id)
         {
             var book = await _context.Books!.FindAsync(id);
@@ -48,6 +46,7 @@ namespace WebAPI.Controllers
         // PUT: api/Books/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize(Roles = AppRole.Admin)]
         public async Task<IActionResult> PutBook(int id, Book book)
         {
             if (id != book.Id)
@@ -79,6 +78,7 @@ namespace WebAPI.Controllers
         // POST: api/Books
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize(Roles = AppRole.Admin)]
         public async Task<ActionResult<Book>> PostBook(Book book)
         {
             _context.Books!.Add(book);
@@ -89,6 +89,7 @@ namespace WebAPI.Controllers
 
         // DELETE: api/Books/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = AppRole.Admin)]
         public async Task<IActionResult> DeleteBook(int id)
         {
             var book = await _context.Books!.FindAsync(id);
